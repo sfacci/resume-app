@@ -1,0 +1,23 @@
+
+<h3>Education</h3>
+ 
+  <!--main list-->
+<ng-template [ngIf]="!editMode">
+  <div class="container-fluid">
+    <a [routerLink]="[ '/education', 'edit']"
+    *ngIf="userIsSignedIn"
+    (click)="onEdit()">Edit</a>
+    
+    <div class="row flex-container"
+        *ngFor="let school of schoolMasterList">
+       <div class="school">{{ school.schoolName }} </div>
+       <div class="grad-date">{{ school.gradDate | date: 'MM/yyyy'}} </div>
+    </div>
+  </div>
+
+</ng-template>
+  
+<!-- edit area-->
+<router-outlet></router-outlet>
+
+

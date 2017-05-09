@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default">
+ 
+  <div class="nav navbar-header">
+    <a class="navbar-brand nav-item" [routerLink]="''">
+      Sarah Facci
+    </a>
+    <button type="button"
+      class="navbar-toggle hidden-xs-up"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      aria-controls="collapse-area"
+      aria-expanded="false"
+      aria-label="toggle navigation"
+    ><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+  </div>
+  
+<!--  collapsible area-->
+  <div id="collapse-area" 
+   class="navbar-toggleable-xs collapse navbar-collapse" 
+   [ngbCollapse]="isNavbarCollapsed"
+   >
+   
+    <div class="navbar-nav">
+      <ul class="navbar-nav nav">
+<!--       may want to add resolver to pre-load data here-->
+        <li class="nav nav-item"  routerLinkActive="active">
+          <a routerLink="/education">Education</a></li>
+        <li class="nav nav-item"  routerLinkActive="active">
+          <a routerLink="/skills">Skills</a></li>
+        <li class="nav nav-item"  routerLinkActive="active">
+          <a routerLink="/experience">Experience</a></li>
+        <li class="nav nav-item"  routerLinkActive="active">
+          <a routerLink="/projects">Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-nav navbar-right">
+      <ul class="navbar-nav nav">
+       
+        <li class="nav nav-item" 
+        *ngIf="!userIsSignedIn"
+        ><a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        
+        <li class="nav nav-item" 
+        *ngIf="userIsSignedIn"
+        ><a class="nav-link" (click)="signOutUser()">Logout</a>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+<!--  end collapsible menu-->
+  
+</nav>

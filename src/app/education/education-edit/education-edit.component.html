@@ -1,0 +1,57 @@
+<form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+  
+    
+  <div class="row" id="button-row">
+    <button type="submit" 
+    class="btn btn-success" 
+    [disabled]="!educationForm.valid"
+    >Save</button>
+
+    <a (click)="onAddNew()"
+    class="btn btn-default" 
+    >Add New</a>
+  </div>
+  
+  <div class="row" id="label-row">
+      <label class="col-xs-12 col-sm-8" style="padding-left:0px;" 
+      for="schoolName">School:</label>
+      <label class="col-xs-8 col-sm-4" for="gradDate">Date Graduated:</label>
+  </div>
+    
+  <div class="row" formArrayName="schoolList" style="padding-left:0px;">
+    
+    <div class="col-xs-12" style="padding:0px;margin:0px;"
+     *ngFor="let educ of educationForm.get('schoolList').controls; let i = index" 
+     [formGroupName]="i" id="input-row">
+
+      <div class="col-xs-12 col-sm-8" style="padding-left:0px;">
+        <input  
+            class="form-control"
+            type="text" 
+            required
+            formControlName="schoolName"> 
+      </div>
+
+      <div class="col-xs-8 col-sm-3" style="padding-left:0px;">
+      <input  
+         class="form-control" 
+         type="date" 
+         required
+         formControlName="gradDate"></div>
+
+
+      <div class="col-xs-4 col-sm-1">
+       <button type="button" 
+          class="btn btn-danger"
+         (click)="onDelete()"> X </button>
+      </div>
+      
+    </div>
+    
+  
+ </div>
+ 
+  
+  
+  
+</form>

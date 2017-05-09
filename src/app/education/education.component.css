@@ -1,0 +1,18 @@
+.flex-container {
+  display: flex;
+}
+
+.flex-container > * {
+  margin: 5px;
+}
+.school {
+  flex: 5;
+}
+
+.grad-date {
+  flex: 2;
+}
+
+.delete-button {
+  flex: 1;
+}
