@@ -9,7 +9,7 @@ export class EducationService {
   schoolsChanged = new Subject<any[]>(); //to be emitted in edit component
 
   private educationList = [ 
-    {schoolName:'', gradDate: null}
+    {schoolName: '', gradDate: null, degreeType: '', fieldName: '' }
   ];
   private educationEndpoint = 'education.json';
   

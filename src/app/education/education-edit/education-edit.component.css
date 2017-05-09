@@ -1,7 +1,62 @@
-form {
-  margin: 20px;
-}
 
 #button-row {
   margin-bottom: 10px;
+}
+
+#table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.table-row {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+
+.button-padding {
+  width: 35px;
+}
+
+.wide-group, .narrow-group {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.wide-group > *, .narrow-group > *{
+  width: 50%;
+}
+.wide-group{
+  flex: 3;
+  /*border: 1px solid blue;*/
+}
+.wide-group > * {
+  min-width: 200px;
+}
+.narrow-group {
+  flex: 2;
+}
+
+
+/*wrap the input fields to stack on smaller screen sizes*/
+@media (max-width: 700px){
+  .wide-group, .narrow-group {
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .wide-group > *, .narrow-group > *{
+    width:100%;
+  }
+}
+
+/*stack all fields on very small screen sizes*/
+@media (max-width: 400px){
+  .table-row {
+    /*display: flex;*/
+    flex-direction: column;
+  }
+
+
 }

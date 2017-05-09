@@ -11,12 +11,8 @@ import { ExperienceEditComponent } from '../experience/experience-edit/experienc
 import { ProjectsComponent } from '../projects/projects.component';
 import { ProjectsEditComponent } from '../projects/projects-edit/projects-edit.component';
 
-import { WeatherComponent } from '../weather/weather.component';
-
-
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/weather', pathMatch: 'full' },
-  { path: 'weather', component: WeatherComponent},
+  { path: '', redirectTo: '/start', pathMatch: 'full' },
   { path: 'start', component: StartComponent },
 
   { path: 'login', component: LoginComponent },

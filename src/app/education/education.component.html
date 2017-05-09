@@ -8,11 +8,36 @@
     *ngIf="userIsSignedIn"
     (click)="onEdit()">Edit</a>
     
-    <div class="row flex-container"
-        *ngFor="let school of schoolMasterList">
-       <div class="school">{{ school.schoolName }} </div>
-       <div class="grad-date">{{ school.gradDate | date: 'MM/yyyy'}} </div>
-    </div>
+
+    <!-- table -->
+    <div class="table">
+      
+      <div class="table-row table-header">   
+        <div class="wide-group">
+          <label class="school-name"> School</label>
+          <label class="grad-date"> Date Graduated</label>
+        </div>
+        
+        <div class="narrow-group">
+          <label> Degree</label>
+        </div>
+      </div>
+
+      <div class="table-row table-body"
+          *ngFor="let school of schoolMasterList">
+
+        <div class="wide-group">
+          <div class="school-name">{{ school.schoolName }} </div>
+          <div class="grad-date">{{ school.gradDate | date: 'MM/yyyy'}} </div>
+        </div>
+
+        <div class="narrow-group">
+          <div>{{ school.degreeType }} {{ school.fieldName }} </div>
+        </div>
+      </div>
+
+    </div> <!-- end table -->
+
   </div>
 
 </ng-template>

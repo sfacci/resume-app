@@ -1,18 +1,43 @@
-.flex-container {
+.table{
+   display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.table-row {
   display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+.wide-group, .narrow-group {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.wide-group > *, .narrow-group > *{
+  width: 50%;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
-.flex-container > * {
-  margin: 5px;
-}
-.school {
-  flex: 5;
+.wide-group {
+  flex: 3;
 }
 
+.school-name {
+  min-width: 150px;
+}
 .grad-date {
+  min-width: 100px;
+}
+.narrow-group {
   flex: 2;
 }
 
-.delete-button {
-  flex: 1;
+/*stack fields on very small screen sizes*/
+@media (max-width: 400px){
+  .table-row {
+    /*display: flex;*/
+    flex-direction: column;
+  }
 }

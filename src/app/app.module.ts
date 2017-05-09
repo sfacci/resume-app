@@ -22,12 +22,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { ExperienceEditComponent } from './experience/experience-edit/experience-edit.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
-import { WeatherComponent } from './weather/weather.component';
 
-import { WeatherService } from './weather/weather.service';
-
-import { KelvinToCelsius } from './shared/kelvin-to-celsius.pipe';
-import { RoundDecimal } from './shared/round-decimal.pipe';
 
 
 @NgModule({
@@ -43,10 +38,7 @@ import { RoundDecimal } from './shared/round-decimal.pipe';
     ExperienceComponent,
     ExperienceEditComponent,
     ProjectsComponent,
-    ProjectsEditComponent,
-    WeatherComponent,
-    KelvinToCelsius,
-    RoundDecimal
+    ProjectsEditComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +48,7 @@ import { RoundDecimal } from './shared/round-decimal.pipe';
     NgbModule.forRoot(),
     AppRouterModule
   ],
-  providers: [AuthService, DataService, EducationService, WeatherService ],
+  providers: [AuthService, DataService, EducationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

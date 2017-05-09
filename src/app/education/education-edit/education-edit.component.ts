@@ -28,12 +28,14 @@ export class EducationEditComponent implements OnInit {
       schoolList: schools
     });
 
-    // create the form rows
+    // fill the data for the form rows
     for (const s of this.schoolMasterList) {
       schools.push(
         new FormGroup({
           'schoolName': new FormControl(s.schoolName, Validators.required),
-          'gradDate': new FormControl(s.gradDate, Validators.required)
+          'gradDate': new FormControl(s.gradDate, Validators.required),
+          'degreeType': new FormControl(s.degreeType ? s.degreeType : '' , Validators.required),
+          'fieldName': new FormControl(s.fieldName ? s.fieldName : '' , Validators.required)
         })
       );
     }
@@ -45,10 +47,8 @@ export class EducationEditComponent implements OnInit {
 
     // send data back to server and refresh main component
     this.educService.updateEducation(this.schoolMasterList);
-
-    // navigate back to main component
-    this.router.navigate(['..'], {relativeTo: this.route});
-
+    
+    this.onCancel();
   }
 
   // create a new form row
@@ -59,6 +59,11 @@ export class EducationEditComponent implements OnInit {
         'gradDate': new FormControl(null, Validators.required)
       })
     );
+  }
+
+  onCancel() {
+    // navigate back to main component
+    this.router.navigate(['..'], {relativeTo: this.route});
   }
 
 }

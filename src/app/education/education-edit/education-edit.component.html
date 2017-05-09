@@ -1,57 +1,86 @@
 <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
-  
-    
-  <div class="row" id="button-row">
+ 
+  <div class="" id="button-row">
     <button type="submit" 
     class="btn btn-success" 
     [disabled]="!educationForm.valid"
     >Save</button>
 
     <a (click)="onAddNew()"
-    class="btn btn-default" 
+    class="btn btn-default" role="button"
     >Add New</a>
+
+     <a (click)="onCancel()" role="button"
+    class="btn btn-danger" 
+    >Cancel</a>
+
   </div>
   
-  <div class="row" id="label-row">
-      <label class="col-xs-12 col-sm-8" style="padding-left:0px;" 
-      for="schoolName">School:</label>
-      <label class="col-xs-8 col-sm-4" for="gradDate">Date Graduated:</label>
+ <div id="table"  formArrayName="schoolList">
+
+  <div class="table-row" id="label-row">
+      <div class="wide-group">
+        <label for="schoolName">School:</label>
+        <label for="gradDate">Date Graduated:</label>
+      </div>
+      
+      <div class="narrow-group">
+         <label for="degreeType">Degree:</label>
+         <label for="fieldName">Field:</label>
+      </div>
+     
+      <div class="button-padding"></div>
   </div>
     
-  <div class="row" formArrayName="schoolList" style="padding-left:0px;">
-    
-    <div class="col-xs-12" style="padding:0px;margin:0px;"
+  <div class="table-row"
      *ngFor="let educ of educationForm.get('schoolList').controls; let i = index" 
-     [formGroupName]="i" id="input-row">
+     [formGroupName]="i">
 
-      <div class="col-xs-12 col-sm-8" style="padding-left:0px;">
-        <input  
+     <div class="wide-group">
+        <div class="td school-name">
+          <input  
             class="form-control"
             type="text" 
             required
             formControlName="schoolName"> 
+        </div>
+
+        <div class="td grad-date">
+          <input  size=8
+          class="form-control"
+          type="date" 
+          required
+          formControlName="gradDate">
+        </div>
       </div>
 
-      <div class="col-xs-8 col-sm-3" style="padding-left:0px;">
-      <input  
-         class="form-control" 
-         type="date" 
-         required
-         formControlName="gradDate"></div>
-
-
-      <div class="col-xs-4 col-sm-1">
+      <div class="narrow-group">
+        <div class="td degree-type">
+        <input  
+            class="form-control"
+            type="text" 
+            required
+            formControlName="degreeType"> 
+            </div>
+      
+        <div class="td field-name">
+        <input  
+            class="form-control"
+            type="text" 
+            required
+            formControlName="fieldName"> 
+            </div>
+      </div>
+   
+      <div class="td">
        <button type="button" 
           class="btn btn-danger"
          (click)="onDelete()"> X </button>
       </div>
       
-    </div>
-    
-  
- </div>
+    </div> <!-- end loop -->
  
-  
+</div> <!--end table-->
   
   
 </form>
