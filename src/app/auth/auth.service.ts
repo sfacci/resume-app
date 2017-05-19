@@ -3,8 +3,8 @@ import * as firebase from 'firebase';
 export class AuthService {
   private userIsSignedIn = false;
   private token = '';
-  private apiKey = 'your API Key here';
-  private authDomain = 'yourDBname.firebaseapp.com';
+   //private apiKey = 'your API Key here';
+  // private authDomain = 'yourDBname.firebaseapp.com';
 
 
   // required before making any further authentication attempts
@@ -25,7 +25,10 @@ export class AuthService {
        }
       )
       .catch(
-      (error: Error) => {console.log(error.message);}
+      (error: Error) => {
+        console.log(error.message);
+        //TODO: handle error 
+      }
     );
     
   }
@@ -46,12 +49,15 @@ export class AuthService {
     return this.token;
   }
 
-  // may return before token is updated
+  // returns promise
   isUserSignedIn() {
-    firebase.auth().onAuthStateChanged( 
-      user => { this.userIsSignedIn = user ? true : false;}
+    return new Promise(
+      (resolve, reject) => {
+        firebase.auth().onAuthStateChanged(
+          (user) => { resolve(user ? true : false); }
+        );
+      }
     );
-    return this.userIsSignedIn;
   }
 
  

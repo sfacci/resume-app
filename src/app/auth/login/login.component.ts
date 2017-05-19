@@ -29,10 +29,9 @@ export class LoginComponent implements OnInit {
       if (user) {
         // User is signed in.
         this.router.navigate(['/start']); 
+        //TODO add error handling
       } 
     });
-    
-    // redirect to start page
     
   }
 }

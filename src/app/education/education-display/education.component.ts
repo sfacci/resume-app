@@ -1,11 +1,13 @@
-import { Component, OnInit, Pipe, OnChanges } from '@angular/core';
+import { Component, OnInit, Pipe, OnChanges, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Router, Event, RoutesRecognized } from '@angular/router';
+import { Router, Event, RoutesRecognized, ActivatedRoute } from '@angular/router';
 
-import { EducationService } from './education.service';
-import { AuthService } from '../auth/auth.service';
+import { EducationService } from '../education.service';
+import { AuthService } from '../../auth/auth.service';
 
-import { Education } from './education.model';
+import { Education } from '../education.model';
+
+
 
 import * as firebase from 'firebase';
 
@@ -18,19 +20,13 @@ export class EducationComponent implements OnInit {
   schoolMasterList: Education[] = []; // to be retrieved from server
   schoolsChangedSubscription: Subscription;
   userIsSignedIn = false;
-  editMode = false;
-
+  
   constructor(private educService: EducationService,
              private authService: AuthService,
-             private router: Router) {
-    router.events.subscribe(
-      (event: Event) => {
-        if (event instanceof RoutesRecognized && event.url === '/education') {
-          this.editMode = false;
-        }
-    });
+             private router: Router,
+             private route: ActivatedRoute) {
   }
-
+  
   ngOnInit() {
     firebase.auth().onAuthStateChanged(
       user => { this.userIsSignedIn = user ? true : false;
@@ -45,15 +41,11 @@ export class EducationComponent implements OnInit {
         this.schoolMasterList = schoolList;
       }
      );
-
   }
+
 
   OnDestroy() {
     this.schoolsChangedSubscription.unsubscribe();
-  }
-
-  onEdit() {
-    this.editMode = true;
   }
 
 

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebase from 'firebase';
 import { AuthService } from '../auth/auth.service';
+import { ModalComponent } from '../shared/modal/modal.component';
+import { Subject } from 'rxjs/Subject';
+import { AuthGuard } from '../shared/auth-guard.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +11,28 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public isNavbarCollapsed = false; // if screen size is small set to true
+  public isNavbarCollapsed = true; 
   userIsSignedIn = false;
 
-  constructor(private authService: AuthService) { }
+  @ViewChild(ModalComponent)
+  public readonly modal: ModalComponent;
+  
+  constructor(private authService: AuthService,
+              private authGuard : AuthGuard ) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged( 
-      user => { this.userIsSignedIn = user ? true : false;
+      user => { 
+        this.userIsSignedIn = user ? true : false;
     });
+    this.authGuard.loginSubject.subscribe(
+      () => {
+        this.modal.onAnimate(); 
+        
+        // this.modal.show();
+        // this.modal.hide();
+      }
+    );
   }
 
   signOutUser() {

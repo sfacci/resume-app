@@ -63,7 +63,7 @@ export class EducationEditComponent implements OnInit {
 
   onCancel() {
     // navigate back to main component
-    this.router.navigate(['..'], {relativeTo: this.route});
+    this.router.navigate(['education']);
   }
 
 }
